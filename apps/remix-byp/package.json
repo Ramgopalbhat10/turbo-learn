@@ -4,25 +4,40 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev"
+    "dev": "remix dev",
+    "codegen": "graphql-codegen -r dotenv/config --config codegen.yml dotenv_config_path=./.env"
   },
   "dependencies": {
     "@remix-run/node": "^1.7.5",
     "@remix-run/react": "^1.7.5",
     "@remix-run/vercel": "^1.7.5",
+    "@urql/core": "^3.0.5",
     "@vercel/node": "^2.4.4",
+    "graphql": "^16.6.0",
+    "graphql-tag": "^2.12.6",
+    "graphql-ws": "^5.11.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "react-ssr-prepass": "^1.5.0",
+    "tsconfig": "workspace:*",
+    "urql": "^3.0.3"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.13.12",
+    "@graphql-codegen/introspection": "2.2.1",
+    "@graphql-codegen/typescript": "2.8.2",
+    "@graphql-codegen/typescript-document-nodes": "2.3.7",
+    "@graphql-codegen/typescript-operations": "2.5.7",
+    "@graphql-codegen/typescript-urql": "^3.5.13",
+    "@graphql-codegen/urql-introspection": "2.2.1",
     "@remix-run/dev": "^1.7.5",
     "@remix-run/eslint-config": "^1.7.5",
     "@remix-run/serve": "^1.7.5",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "eslint": "^8.23.1",
-    "typescript": "^4.7.4",
-    "tsconfig": "*"
+    "typescript": "^4.7.4"
   },
   "engines": {
     "node": ">=14"

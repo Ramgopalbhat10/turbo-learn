@@ -1,31 +1,21 @@
 import { LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
+import { client } from "~/utils/urql-client";
+import { GetFriends, GetFriendsQuery } from "../../graphql/generated/types";
 
 type LoaderData = {
-  friend: Record<string, string>[];
+  friend: GetFriendsQuery["friend"];
 };
 
 export const loader: LoaderFunction = async () => {
-  let response;
   try {
-    const data = await fetch(process.env.HASURA_PROJECT_ENDPOINT as string, {
-      method: "POST",
-      headers: {
-        "x-hasura-admin-secret": process.env.HASURA_ADMIN_SECRET as string,
-      },
-      body: JSON.stringify({
-        query: `query {
-          friend {
-            name
-          }
-        }`,
-      }),
-    });
-    response = await data.json();
+    const { data } = await client
+      .query<GetFriendsQuery>(GetFriends, {})
+      .toPromise();
+    return data;
   } catch (error) {
     throw new Error("Something went wrong while calling API");
   }
-  return response.data;
 };
 
 export default function Index() {
